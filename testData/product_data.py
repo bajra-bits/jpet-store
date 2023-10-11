@@ -1,7 +1,9 @@
 products_scenario = [
-    'fish',
-    # 'dogs',
-    # 'reptiles',
-    # 'cats',
-    # 'birds'
+    (
+        'fish',
+        # 'dogs',
+        'reptiles',
+        'cats',
+        'birds'
+    )
 ]

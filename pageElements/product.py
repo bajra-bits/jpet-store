@@ -51,6 +51,8 @@ class Product:
 
             self.driver.back()
 
+        self.driver.back()
+
     def cart_icon_btn(self):
         self.wait.until(EC.element_to_be_clickable(self.cart_btn)).click()
 
@@ -58,7 +60,7 @@ class Product:
         cart_table: WebElement = self.wait.until(EC.visibility_of_element_located(self.table))
         items_list: List[WebElement] = cart_table.find_elements(By.XPATH, '//tr')
 
-        selected_items = items_list[1:len(items_list)-1]
+        selected_items = items_list[1:len(items_list) - 1]
 
         for item in selected_items:
             prod_id = item.find_element(By.XPATH, "./td[2]")
@@ -69,6 +71,8 @@ class Product:
             print(f"ProductID: {prod_id.text}")
             print(f"Description: {desc.text}")
             print(f"Rate: {rate.text}")
+
+        print(f"Total items in cart: {len(selected_items)}")
 
     def checkout(self):
         self.wait.until(EC.element_to_be_clickable(self.proceed_to_checkout_btn)).click()

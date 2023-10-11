@@ -78,6 +78,8 @@ test_data3 = {
     "account.bannerOption": False
 }
 
+
+# USER REGISTER EDGE CASE
 test_data4 = {
     "username": "John",
     "password": "supertest",

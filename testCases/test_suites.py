@@ -11,7 +11,7 @@ from pageElements.register import Register
 from testData.login_data import login_scenarios
 from testData.product_data import products_scenario
 from testData.register_data import register_scenario
-from utils.variables import DEFAULT_LANG, DEFAULT_CATEGORY, DUPLICATE_USER, REGISTER_URI
+from utils.variables import DEFAULT_LANG, DEFAULT_CATEGORY, DUPLICATE_USER, REGISTER_URI, CONFIRMATION_TEXT
 
 
 # @pytest.mark.parametrize("dataset", register_scenario)
@@ -132,5 +132,12 @@ def test_pick_products(product, setup):
 
     pp.cart_icon_btn()
     pp.display_cart_items()
+
+    print('***** ADD TO CART SUCCESS ********')
+
+    pp.checkout()
+
+    assert CONFIRMATION_TEXT == pp.get_confirmation_text()
+    print('***** CHECKOUT SUCCESS *****')
 
 

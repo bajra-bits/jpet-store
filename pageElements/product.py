@@ -15,7 +15,7 @@ class Product:
     add_to_cart_btn = (By.XPATH, "//a[@class='Button' and contains(text(), 'Cart')]")
     cart_btn = (By.XPATH, "//img[@name='img_cart']")
     proceed_to_checkout_btn = (By.XPATH, "//a[@class='Button' and contains(text(), 'Checkout')]")
-    continue_btn = (By.XPATH, "//a[@class='Button' and contains(text(), 'Continue')]",)
+    continue_btn = (By.XPATH, "//input[@type='submit' and @name='newOrder']",)
     confirm_btn = (By.XPATH, "//a[@class='Button' and contains(text(), 'Confirm')]",)
     confirmation_text = (By.XPATH, "//ul[@class='messages']//li")
     main_menu_btn = (By.XPATH, "//div[@id='BackLink']//*[contains(text(), 'Main Menu')]")
@@ -56,9 +56,9 @@ class Product:
 
     def display_cart_items(self):
         cart_table: WebElement = self.wait.until(EC.visibility_of_element_located(self.table))
-        items_list: List[WebElement] = cart_table.find_elements('//tr')
+        items_list: List[WebElement] = cart_table.find_elements(By.XPATH, '//tr')
 
-        selected_items = items_list[1:len(items_list)]
+        selected_items = items_list[1:len(items_list)-1]
 
         for item in selected_items:
             prod_id = item.find_element(By.XPATH, "./td[2]")
@@ -76,7 +76,7 @@ class Product:
         self.wait.until(EC.element_to_be_clickable(self.confirm_btn)).click()
 
     def get_confirmation_text(self) -> str:
-        return self.wait.until(EC.visibility_of_element_located(self.confirmation_text)).text()
+        return self.wait.until(EC.visibility_of_element_located(self.confirmation_text)).text
 
     def main_menu(self):
         self.wait.until(EC.element_to_be_clickable(self.main_menu_btn)).click()
